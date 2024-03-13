@@ -12,7 +12,19 @@ func TestScanFile(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	for _, t := range sc.ScanToken() {
+	tokens, errs := sc.Scan()
+
+	if len(errs) != 0 {
+		for _, err := range errs {
+			fmt.Println(err)
+		}
+		t.FailNow()
+	}
+
+	for _, t := range tokens {
 		fmt.Println(t.String())
 	}
+}
+
+func _TestPrint(t *testing.T) {
 }
